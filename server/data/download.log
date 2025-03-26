@@ -1,0 +1,378 @@
+downloading "0" job urls
+<Response [404]>
+404
+Not Found
+<urllib3.response.HTTPResponse object at 0x7f51a2941540>
+{"message": "No Captures found for: job-boards.greenhouse.io/0"}
+downloading "1" job urls
+<Response [200]>
+200
+OK
+<urllib3.response.HTTPResponse object at 0x7f51a25a40a0>
+{"urlkey": "io,greenhouse,job-boards)/1", "timestamp": "20250214050638", "url": "https://job-boards.greenhouse.io/1", "mime": "text/html", "mime-detected": "text/html", "status": "200", "digest": "32PNPFCKX52NXHZS2SO4ISORN3GKQOON", "length": "5983", "offset": "294503563", "filename": "crawl-data/CC-MAIN-2025-08/segments/1738831951840.44/warc/CC-MAIN-20250214034103-20250214064103-00644.warc.gz", "languages": "eng", "encoding": "UTF-8"}
+{"urlkey": "io,greenhouse,job-boards)/1/jobs/4741146002", "timestamp": "20250214050432", "url": "https://job-boards.greenhouse.io/1/jobs/4741146002", "mime": "text/html", "mime-detected": "text/html", "status": "200", "digest": "Q426TNFGPI3JNRMFC7CZULJB6RXVT5TT", "length": "8708", "offset": "294797166", "filename": "crawl-data/CC-MAIN-2025-08/segments/1738831951840.44/warc/CC-MAIN-20250214034103-20250214064103-00793.warc.gz", "languages": "eng", "encoding": "UTF-8"}
+{"urlkey": "io,greenhouse,job-boards)/1/jobs/4741146002", "timestamp": "20250215112437", "
+downloading "2" job urls
+<Response [200]>
+200
+OK
+<urllib3.response.HTTPResponse object at 0x7f51a258ec80>
+{"urlkey": "io,greenhouse,job-boards)/21co", "timestamp": "20250218135523", "url": "https://job-boards.greenhouse.io/21co", "mime": "text/html", "mime-detected": "text/html", "status": "404", "digest": "T7RKDYSJSGW3YFRGZ3KCC3YNWWV7LLR5", "length": "5937", "offset": "14132490", "filename": "crawl-data/CC-MAIN-2025-08/segments/1738832261702.77/crawldiagnostics/CC-MAIN-20250218113527-20250218143527-00064.warc.gz"}
+{"urlkey": "io,greenhouse,job-boards)/21co/jobs/4931669004", "timestamp": "20250218140849", "url": "https://job-boards.greenhouse.io/21co/jobs/4931669004", "mime": "unk", "mime-detected": "application/octet-stream", "status": "302", "digest": "3I42H3S6NNFQ2MSVX7XZKYAYSCX5QBYJ", "length": "1168", "offset": "13260363", "filename": "crawl-data/CC-MAIN-2025-08/segments/1738832261702.77/crawldiagnostics/CC-MAIN-20250218113527-20250218143527-00804.warc.gz", "redirect": "/21co?error=true"}
+{"urlkey": "io,greenhouse,job-boards)/21co/jobs/4947274004", "timestamp": "20250218135447", "url"
+downloading "3" job urls
+<Response [200]>
+200
+OK
+<urllib3.response.HTTPResponse object at 0x7f51a25a43a0>
+{"urlkey": "io,greenhouse,job-boards)/3cloud/jobs/6813360002", "timestamp": "20250207174406", "url": "https://job-boards.greenhouse.io/3cloud/jobs/6813360002", "mime": "text/html", "mime-detected": "text/html", "status": "200", "digest": "JDDZOFJKOV4DOZ6X5JIAOIGXCUG36KAP", "length": "15545", "offset": "303809706", "filename": "crawl-data/CC-MAIN-2025-08/segments/1738831951497.8/warc/CC-MAIN-20250207163921-20250207193921-00414.warc.gz", "languages": "eng", "encoding": "UTF-8"}
+{"urlkey": "io,greenhouse,job-boards)/3cloud/jobs/7520126002", "timestamp": "20250217085113", "url": "https://job-boards.greenhouse.io/3cloud/jobs/7520126002", "mime": "text/html", "mime-detected": "text/html", "status": "200", "digest": "JFDH2CZ3BBXZ2YLPTLWQKV5YZEPM4HRS", "length": "13791", "offset": "284675112", "filename": "crawl-data/CC-MAIN-2025-08/segments/1738832250530.81/warc/CC-MAIN-20250217061435-20250217091435-00454.warc.gz", "languages": "eng", "encoding": "UTF-8"}
+{"urlkey": "io,greenhouse,job-boards)
+downloading "4" job urls
+<Response [404]>
+404
+Not Found
+<urllib3.response.HTTPResponse object at 0x7f51a25a4220>
+{"message": "No Captures found for: job-boards.greenhouse.io/4"}
+downloading "5" job urls
+<Response [200]>
+200
+OK
+<urllib3.response.HTTPResponse object at 0x7f51a25a40d0>
+{"urlkey": "io,greenhouse,job-boards)/540/jobs/6337655003", "timestamp": "20250212150937", "url": "https://job-boards.greenhouse.io/540/jobs/6337655003", "mime": "text/html", "mime-detected": "text/html", "status": "200", "digest": "KDN5PE6WULARSW65F2UNUOYGLEVZDW4T", "length": "19185", "offset": "314217222", "filename": "crawl-data/CC-MAIN-2025-08/segments/1738831951754.36/warc/CC-MAIN-20250212124130-20250212154130-00520.warc.gz", "languages": "eng", "encoding": "UTF-8"}
+{"urlkey": "io,greenhouse,job-boards)/5wpr/jobs/4494073008", "timestamp": "20250216063509", "url": "https://job-boards.greenhouse.io/5wpr/jobs/4494073008", "mime": "text/html", "mime-detected": "text/html", "status": "200", "digest": "STKJ5ILNQISWYEBTKKCSFOI7TMDOT2VB", "length": "20597", "offset": "301121637", "filename": "crawl-data/CC-MAIN-2025-08/segments/1738831952410.39/warc/CC-MAIN-20250216041522-20250216071522-00158.warc.gz", "languages": "eng", "encoding": "UTF-8"}
+{"urlkey": "io,greenhouse,job-boards)/5wpr/job
+downloading "6" job urls
+<Response [503]>
+503
+Service Temporarily Unavailable
+<urllib3.response.HTTPResponse object at 0x7f51a25a4b80>
+<html>
+<head><title>503 Service Temporarily Unavailable</title></head>
+<body>
+<center><h1>503 Service Temporarily Unavailable</h1></center>
+<hr><center>nginx/1.27.4</center>
+</body>
+</html>
+
+downloading "7" job urls
+<Response [404]>
+404
+Not Found
+<urllib3.response.HTTPResponse object at 0x7f51a25a4790>
+{"message": "No Captures found for: job-boards.greenhouse.io/7"}
+downloading "8" job urls
+<Response [503]>
+503
+Service Temporarily Unavailable
+<urllib3.response.HTTPResponse object at 0x7f51a25a45b0>
+<html>
+<head><title>503 Service Temporarily Unavailable</title></head>
+<body>
+<center><h1>503 Service Temporarily Unavailable</h1></center>
+<hr><center>nginx/1.27.4</center>
+</body>
+</html>
+
+downloading "9" job urls
+<Response [503]>
+503
+Service Temporarily Unavailable
+<urllib3.response.HTTPResponse object at 0x7f51a25a4c10>
+<html>
+<head><title>503 Service Temporarily Unavailable</title></head>
+<body>
+<center><h1>503 Service Temporarily Unavailable</h1></center>
+<hr><center>nginx/1.27.4</center>
+</body>
+</html>
+
+downloading "a" job urls
+<Response [503]>
+503
+Service Temporarily Unavailable
+<urllib3.response.HTTPResponse object at 0x7f51a25a4520>
+<html>
+<head><title>503 Service Temporarily Unavailable</title></head>
+<body>
+<center><h1>503 Service Temporarily Unavailable</h1></center>
+<hr><center>nginx/1.27.4</center>
+</body>
+</html>
+
+downloading "b" job urls
+<Response [200]>
+200
+OK
+<urllib3.response.HTTPResponse object at 0x7f51a25a5180>
+{"urlkey": "io,greenhouse,job-boards)/babyzone/jobs/6502634", "timestamp": "20250209214037", "url": "https://job-boards.greenhouse.io/babyzone/jobs/6502634", "mime": "text/html", "mime-detected": "text/html", "status": "200", "digest": "BMAU7N4SC2WKHWMMVOZO7YCRGJS367V6", "length": "18533", "offset": "301426272", "filename": "crawl-data/CC-MAIN-2025-08/segments/1738831951624.70/warc/CC-MAIN-20250209195033-20250209225033-00361.warc.gz", "languages": "eng", "encoding": "UTF-8"}
+{"urlkey": "io,greenhouse,job-boards)/backlight", "timestamp": "20250207021752", "url": "https://job-boards.greenhouse.io/backlight", "mime": "text/html", "mime-detected": "text/html", "status": "200", "digest": "J4MWKPFI6LZP3MSSBVFC4J4Z5DI7S4GC", "length": "15120", "offset": "304464065", "filename": "crawl-data/CC-MAIN-2025-08/segments/1738831951463.45/warc/CC-MAIN-20250207003352-20250207033352-00658.warc.gz", "languages": "eng", "encoding": "UTF-8"}
+{"urlkey": "io,greenhouse,job-boards)/bamboohr17", "timestamp": 
+downloading "c" job urls
+<Response [200]>
+200
+OK
+<urllib3.response.HTTPResponse object at 0x7f51a25e54e0>
+{"urlkey": "io,greenhouse,job-boards)/c3el", "timestamp": "20250210034353", "url": "https://job-boards.greenhouse.io/c3el", "mime": "text/html", "mime-detected": "text/html", "status": "200", "digest": "XU3UERW6O3TAV7Q675Z7OOS6LHFKVOIN", "length": "17910", "offset": "306231089", "filename": "crawl-data/CC-MAIN-2025-08/segments/1738831951638.21/warc/CC-MAIN-20250210021449-20250210051449-00204.warc.gz", "languages": "eng", "encoding": "UTF-8"}
+{"urlkey": "io,greenhouse,job-boards)/c3el", "timestamp": "20250218110552", "url": "https://job-boards.greenhouse.io/c3el", "mime": "text/html", "mime-detected": "text/html", "status": "200", "digest": "GKEVXW2UZQALMD7FVTRBTQDHSKZZB3L3", "length": "15716", "offset": "292590135", "filename": "crawl-data/CC-MAIN-2025-08/segments/1738832260918.88/warc/CC-MAIN-20250218081924-20250218111924-00204.warc.gz", "languages": "eng", "encoding": "UTF-8"}
+{"urlkey": "io,greenhouse,job-boards)/c3el/jobs/4225096007", "timestamp": "20250211063607", "url": "https://
+downloading "d" job urls
+<Response [503]>
+503
+Service Temporarily Unavailable
+<urllib3.response.HTTPResponse object at 0x7f51a26518a0>
+<html>
+<head><title>503 Service Temporarily Unavailable</title></head>
+<body>
+<center><h1>503 Service Temporarily Unavailable</h1></center>
+<hr><center>nginx/1.27.4</center>
+</body>
+</html>
+
+downloading "e" job urls
+<Response [200]>
+200
+OK
+<urllib3.response.HTTPResponse object at 0x7f51a2651630>
+{"urlkey": "io,greenhouse,job-boards)/e2openllc", "timestamp": "20250217075407", "url": "https://job-boards.greenhouse.io/e2openllc", "mime": "text/html", "mime-detected": "text/html", "status": "200", "digest": "VGRJTVP5TEWDV22IDXIAFKDSJPGQEGXI", "length": "51292", "offset": "282392359", "filename": "crawl-data/CC-MAIN-2025-08/segments/1738832250530.81/warc/CC-MAIN-20250217061435-20250217091435-00099.warc.gz", "languages": "eng,msa", "encoding": "UTF-8"}
+{"urlkey": "io,greenhouse,job-boards)/eaf", "timestamp": "20250209121253", "url": "https://job-boards.greenhouse.io/eaf", "mime": "text/html", "mime-detected": "text/html", "status": "200", "digest": "NQOQ3FTXKKKJ7Z4QOLHY2QONU3AFWAAK", "length": "5592", "offset": "299283365", "filename": "crawl-data/CC-MAIN-2025-08/segments/1738831951598.53/warc/CC-MAIN-20250209101237-20250209131237-00709.warc.gz", "languages": "eng", "encoding": "UTF-8"}
+{"urlkey": "io,greenhouse,job-boards)/earlycareerprograms", "timestamp": "20250211175033", "url":
+downloading "f" job urls
+<Response [503]>
+503
+Service Temporarily Unavailable
+<urllib3.response.HTTPResponse object at 0x7f51a26485b0>
+<html>
+<head><title>503 Service Temporarily Unavailable</title></head>
+<body>
+<center><h1>503 Service Temporarily Unavailable</h1></center>
+<hr><center>nginx/1.27.4</center>
+</body>
+</html>
+
+downloading "g" job urls
+<Response [503]>
+503
+Service Temporarily Unavailable
+<urllib3.response.HTTPResponse object at 0x7f51a26482e0>
+<html>
+<head><title>503 Service Temporarily Unavailable</title></head>
+<body>
+<center><h1>503 Service Temporarily Unavailable</h1></center>
+<hr><center>nginx/1.27.4</center>
+</body>
+</html>
+
+downloading "h" job urls
+<Response [200]>
+200
+OK
+<urllib3.response.HTTPResponse object at 0x7f51a2648850>
+{"urlkey": "io,greenhouse,job-boards)/haizelabs", "timestamp": "20250211084615", "url": "https://job-boards.greenhouse.io/haizelabs", "mime": "text/html", "mime-detected": "text/html", "status": "200", "digest": "B4V5FQFCULFW4JFGWSKJWXOAPAQS2RHB", "length": "9862", "offset": "289439580", "filename": "crawl-data/CC-MAIN-2025-08/segments/1738831951699.28/warc/CC-MAIN-20250211072351-20250211102351-00548.warc.gz", "languages": "eng", "encoding": "UTF-8"}
+{"urlkey": "io,greenhouse,job-boards)/haizelabs/jobs/4070038008", "timestamp": "20250215210104", "url": "https://job-boards.greenhouse.io/haizelabs/jobs/4070038008", "mime": "text/html", "mime-detected": "text/html", "status": "200", "digest": "WCDE3OU5QCREZ4FB2JER6P2VX5PQAHJK", "length": "14431", "offset": "293810462", "filename": "crawl-data/CC-MAIN-2025-08/segments/1738831951992.60/warc/CC-MAIN-20250215183541-20250215213541-00790.warc.gz", "languages": "eng", "encoding": "UTF-8"}
+{"urlkey": "io,greenhouse,job-boards)/haizelabs/jobs/4071
+downloading "i" job urls
+<Response [503]>
+503
+Service Temporarily Unavailable
+<urllib3.response.HTTPResponse object at 0x7f51a24e33d0>
+<html>
+<head><title>503 Service Temporarily Unavailable</title></head>
+<body>
+<center><h1>503 Service Temporarily Unavailable</h1></center>
+<hr><center>nginx/1.27.4</center>
+</body>
+</html>
+
+downloading "j" job urls
+<Response [200]>
+200
+OK
+<urllib3.response.HTTPResponse object at 0x7f51a24e3220>
+{"urlkey": "io,greenhouse,job-boards)/jabrahearing", "timestamp": "20250206232854", "url": "https://job-boards.greenhouse.io/jabrahearing", "mime": "text/html", "mime-detected": "text/html", "status": "200", "digest": "IWGML23YD7MJ64H7BJMHHWVI5JQY3M5E", "length": "12697", "offset": "307190962", "filename": "crawl-data/CC-MAIN-2025-08/segments/1738831951463.20/warc/CC-MAIN-20250206212213-20250207002213-00851.warc.gz", "languages": "eng", "encoding": "UTF-8"}
+{"urlkey": "io,greenhouse,job-boards)/jabrahearing/jobs/5415201004", "timestamp": "20250208161509", "url": "https://job-boards.greenhouse.io/jabrahearing/jobs/5415201004", "mime": "text/html", "mime-detected": "text/html", "status": "200", "digest": "X7GLES6M2I35ULMNZVGQ7I2ZRVM3UD5F", "length": "21190", "offset": "298305209", "filename": "crawl-data/CC-MAIN-2025-08/segments/1738831951557.2/warc/CC-MAIN-20250208145228-20250208175228-00401.warc.gz", "languages": "eng", "encoding": "UTF-8"}
+{"urlkey": "io,greenhouse,job-boards)/jackhea
+downloading "k" job urls
+<Response [503]>
+503
+Service Temporarily Unavailable
+<urllib3.response.HTTPResponse object at 0x7f51a26680d0>
+<html>
+<head><title>503 Service Temporarily Unavailable</title></head>
+<body>
+<center><h1>503 Service Temporarily Unavailable</h1></center>
+<hr><center>nginx/1.27.4</center>
+</body>
+</html>
+
+downloading "l" job urls
+<Response [503]>
+503
+Service Temporarily Unavailable
+<urllib3.response.HTTPResponse object at 0x7f51a24e3e20>
+<html>
+<head><title>503 Service Temporarily Unavailable</title></head>
+<body>
+<center><h1>503 Service Temporarily Unavailable</h1></center>
+<hr><center>nginx/1.27.4</center>
+</body>
+</html>
+
+downloading "m" job urls
+<Response [200]>
+200
+OK
+<urllib3.response.HTTPResponse object at 0x7f51a26680d0>
+{"urlkey": "io,greenhouse,job-boards)/mach49", "timestamp": "20250218193535", "url": "https://job-boards.greenhouse.io/mach49", "mime": "text/html", "mime-detected": "text/html", "status": "200", "digest": "YJYXWDXB7WYY57YBHS5E6VVALUWVNN4P", "length": "9323", "offset": "309831780", "filename": "crawl-data/CC-MAIN-2025-08/segments/1738832262709.84/warc/CC-MAIN-20250218180708-20250218210708-00739.warc.gz", "languages": "eng", "encoding": "UTF-8"}
+{"urlkey": "io,greenhouse,job-boards)/mackweldon", "timestamp": "20250210235011", "url": "https://job-boards.greenhouse.io/mackweldon", "mime": "text/html", "mime-detected": "text/html", "status": "200", "digest": "XV5YOTSCIRJ26NQA6ZTS6ENVTYCJFI64", "length": "10007", "offset": "300623758", "filename": "crawl-data/CC-MAIN-2025-08/segments/1738831951672.19/warc/CC-MAIN-20250210213854-20250211003854-00542.warc.gz", "languages": "eng", "encoding": "UTF-8"}
+{"urlkey": "io,greenhouse,job-boards)/magic", "timestamp": "20250208221622", "url": "https://
+downloading "n" job urls
+<Response [503]>
+503
+Service Temporarily Unavailable
+<urllib3.response.HTTPResponse object at 0x7f51a2514190>
+<html>
+<head><title>503 Service Temporarily Unavailable</title></head>
+<body>
+<center><h1>503 Service Temporarily Unavailable</h1></center>
+<hr><center>nginx/1.27.4</center>
+</body>
+</html>
+
+downloading "o" job urls
+<Response [200]>
+200
+OK
+<urllib3.response.HTTPResponse object at 0x7f51a24b7be0>
+{"urlkey": "io,greenhouse,job-boards)/o1labs", "timestamp": "20250216100835", "url": "https://job-boards.greenhouse.io/o1labs", "mime": "text/html", "mime-detected": "text/html", "status": "200", "digest": "Z4NFQO2OGO2WVQIYLZTBHAPS3X44TW25", "length": "11914", "offset": "288607168", "filename": "crawl-data/CC-MAIN-2025-08/segments/1738831952477.6/warc/CC-MAIN-20250216072921-20250216102921-00709.warc.gz", "languages": "eng", "encoding": "UTF-8"}
+{"urlkey": "io,greenhouse,job-boards)/o1labs", "timestamp": "20250217172504", "url": "https://job-boards.greenhouse.io/o1labs", "mime": "text/html", "mime-detected": "text/html", "status": "200", "digest": "Z4NFQO2OGO2WVQIYLZTBHAPS3X44TW25", "length": "11911", "offset": "292366851", "filename": "crawl-data/CC-MAIN-2025-08/segments/1738832256162.71/warc/CC-MAIN-20250217160322-20250217190322-00709.warc.gz", "languages": "eng", "encoding": "UTF-8"}
+{"urlkey": "io,greenhouse,job-boards)/oafkenya", "timestamp": "20250211220120", "url": "https://job-b
+downloading "p" job urls
+<Response [503]>
+503
+Service Temporarily Unavailable
+<urllib3.response.HTTPResponse object at 0x7f51a249a3b0>
+<html>
+<head><title>503 Service Temporarily Unavailable</title></head>
+<body>
+<center><h1>503 Service Temporarily Unavailable</h1></center>
+<hr><center>nginx/1.27.4</center>
+</body>
+</html>
+
+downloading "q" job urls
+<Response [503]>
+503
+Service Temporarily Unavailable
+<urllib3.response.HTTPResponse object at 0x7f51a266bf40>
+<html>
+<head><title>503 Service Temporarily Unavailable</title></head>
+<body>
+<center><h1>503 Service Temporarily Unavailable</h1></center>
+<hr><center>nginx/1.27.4</center>
+</body>
+</html>
+
+downloading "r" job urls
+<Response [200]>
+200
+OK
+<urllib3.response.HTTPResponse object at 0x7f51a2499de0>
+{"urlkey": "io,greenhouse,job-boards)/radiant", "timestamp": "20250212111442", "url": "https://job-boards.greenhouse.io/radiant", "mime": "text/html", "mime-detected": "text/html", "status": "200", "digest": "XVKLUGLEXDZZES74CJM4Q72PRCAQRDDN", "length": "20139", "offset": "314972524", "filename": "crawl-data/CC-MAIN-2025-08/segments/1738831951751.50/warc/CC-MAIN-20250212092441-20250212122441-00718.warc.gz", "languages": "eng", "encoding": "UTF-8"}
+{"urlkey": "io,greenhouse,job-boards)/radiant", "timestamp": "20250213001529", "url": "https://job-boards.greenhouse.io/radiant", "mime": "text/html", "mime-detected": "text/html", "status": "200", "digest": "Q4HL5P3HGJDH7O66INWY6VJ4JRLZCOCZ", "length": "19288", "offset": "299582003", "filename": "crawl-data/CC-MAIN-2025-08/segments/1738831951760.75/warc/CC-MAIN-20250212222727-20250213012727-00718.warc.gz", "languages": "eng", "encoding": "UTF-8"}
+{"urlkey": "io,greenhouse,job-boards)/radiant", "timestamp": "20250214041245", "url": "https://j
+downloading "s" job urls
+<Response [503]>
+503
+Service Temporarily Unavailable
+<urllib3.response.HTTPResponse object at 0x7f51a250c160>
+<html>
+<head><title>503 Service Temporarily Unavailable</title></head>
+<body>
+<center><h1>503 Service Temporarily Unavailable</h1></center>
+<hr><center>nginx/1.27.4</center>
+</body>
+</html>
+
+downloading "t" job urls
+<Response [503]>
+503
+Service Temporarily Unavailable
+<urllib3.response.HTTPResponse object at 0x7f51a255fe80>
+<html>
+<head><title>503 Service Temporarily Unavailable</title></head>
+<body>
+<center><h1>503 Service Temporarily Unavailable</h1></center>
+<hr><center>nginx/1.27.4</center>
+</body>
+</html>
+
+downloading "u" job urls
+<Response [200]>
+200
+OK
+<urllib3.response.HTTPResponse object at 0x7f51a250c160>
+{"urlkey": "io,greenhouse,job-boards)/u410", "timestamp": "20250207051834", "url": "https://job-boards.greenhouse.io/u410", "mime": "text/html", "mime-detected": "text/html", "status": "200", "digest": "BEAQCTNSNMS23MUTYELSAEG7Z6OO7I5O", "length": "5659", "offset": "311215675", "filename": "crawl-data/CC-MAIN-2025-08/segments/1738831951464.35/warc/CC-MAIN-20250207034826-20250207064826-00231.warc.gz", "languages": "eng", "encoding": "UTF-8"}
+{"urlkey": "io,greenhouse,job-boards)/u410", "timestamp": "20250218162234", "url": "https://job-boards.greenhouse.io/u410", "mime": "text/html", "mime-detected": "text/html", "status": "200", "digest": "A2EW7WV3ME5KSQ2TTJ7LC7NOPFYZ7ILW", "length": "5749", "offset": "288230623", "filename": "crawl-data/CC-MAIN-2025-08/segments/1738832262490.93/warc/CC-MAIN-20250218145202-20250218175202-00231.warc.gz", "languages": "eng", "encoding": "UTF-8"}
+{"urlkey": "io,greenhouse,job-boards)/uchicagoepic", "timestamp": "20250212205108", "url": "https://job-boards
+downloading "v" job urls
+<Response [503]>
+503
+Service Temporarily Unavailable
+<urllib3.response.HTTPResponse object at 0x7f51a250dae0>
+<html>
+<head><title>503 Service Temporarily Unavailable</title></head>
+<body>
+<center><h1>503 Service Temporarily Unavailable</h1></center>
+<hr><center>nginx/1.27.4</center>
+</body>
+</html>
+
+downloading "w" job urls
+<Response [503]>
+503
+Service Temporarily Unavailable
+<urllib3.response.HTTPResponse object at 0x7f51a250d930>
+<html>
+<head><title>503 Service Temporarily Unavailable</title></head>
+<body>
+<center><h1>503 Service Temporarily Unavailable</h1></center>
+<hr><center>nginx/1.27.4</center>
+</body>
+</html>
+
+downloading "x" job urls
+<Response [200]>
+200
+OK
+<urllib3.response.HTTPResponse object at 0x7f51a250c310>
+{"urlkey": "io,greenhouse,job-boards)/xairatherapeutics/jobs/4231891007", "timestamp": "20250219110117", "url": "https://job-boards.greenhouse.io/xairatherapeutics/jobs/4231891007", "mime": "unk", "mime-detected": "application/octet-stream", "status": "302", "digest": "3I42H3S6NNFQ2MSVX7XZKYAYSCX5QBYJ", "length": "1179", "offset": "15582814", "filename": "crawl-data/CC-MAIN-2025-08/segments/1738832263491.95/crawldiagnostics/CC-MAIN-20250219102541-20250219132541-00520.warc.gz", "redirect": "/xairatherapeutics?error=true"}
+{"urlkey": "io,greenhouse,job-boards)/xairatherapeutics/jobs/4361876007", "timestamp": "20250219115125", "url": "https://job-boards.greenhouse.io/xairatherapeutics/jobs/4361876007", "mime": "text/html", "mime-detected": "text/html", "status": "200", "digest": "6O5FV7EXDXEUGO5L3W6F5A7ARD4UR6DW", "length": "18106", "offset": "302202507", "filename": "crawl-data/CC-MAIN-2025-08/segments/1738832263491.95/warc/CC-MAIN-20250219102541-20250219132541-00879.warc.gz", "languages
+downloading "y" job urls
+<Response [503]>
+503
+Service Temporarily Unavailable
+<urllib3.response.HTTPResponse object at 0x7f51a250eef0>
+<html>
+<head><title>503 Service Temporarily Unavailable</title></head>
+<body>
+<center><h1>503 Service Temporarily Unavailable</h1></center>
+<hr><center>nginx/1.27.4</center>
+</body>
+</html>
+
+downloading "z" job urls
+<Response [503]>
+503
+Service Temporarily Unavailable
+<urllib3.response.HTTPResponse object at 0x7f51a250ed40>
+<html>
+<head><title>503 Service Temporarily Unavailable</title></head>
+<body>
+<center><h1>503 Service Temporarily Unavailable</h1></center>
+<hr><center>nginx/1.27.4</center>
+</body>
+</html>
+
+writing to data/companies.csv
+writing to data/company_jobs.csv
