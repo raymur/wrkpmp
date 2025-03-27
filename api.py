@@ -5,6 +5,8 @@ from werkzeug.exceptions import HTTPException
 import sqlite3
 import re
 import traceback
+from flask_cors import CORS
+
 
 def refine_jobs(jobs: list):
     jobs = list(filter(lambda j: not re.match(r".*(lead|staff).*", j[1].lower()), jobs))
@@ -12,6 +14,7 @@ def refine_jobs(jobs: list):
 
 def create_app():
     app = Flask(__name__)
+    CORS(app)
     bp = Blueprint('api', __name__)
 
     @app.errorhandler(Exception)
@@ -84,7 +87,7 @@ def create_app():
     def home():
         return jsonify("home")
 
-    @bp.route("/ping/",  methods=['GET'])
+    @bp.route("/ping",  methods=['GET'])
     def ping():
         return jsonify("pong")
 
