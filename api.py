@@ -5,6 +5,7 @@ from werkzeug.exceptions import HTTPException
 import sqlite3
 import re
 import traceback
+import os
 from flask_cors import CORS
 
 
@@ -14,7 +15,7 @@ def refine_jobs(jobs: list):
 
 def create_app():
     app = Flask(__name__)
-    CORS(app)
+    CORS(app, origins=[os.environ.get('UI_HOST', '')])
     bp = Blueprint('api', __name__)
 
     @app.errorhandler(Exception)
