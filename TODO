@@ -1,0 +1,9 @@
+TODO
+
+cronjob to remove stale jobs and add new jobs
+store date added in job table
+date sort on UI
+store keywords or full description in job table
+store number of questions in application
+    determine if it is easy apply
+

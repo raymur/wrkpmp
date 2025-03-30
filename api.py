@@ -9,9 +9,8 @@ import os
 from flask_cors import CORS
 
 
-def refine_jobs(jobs: list):
-    jobs = list(filter(lambda j: not re.match(r".*(lead|staff).*", j[1].lower()), jobs))
-    return jobs
+def refine_jobs(jobs: list, regex: str):
+    return list(filter(lambda j: not re.match(regex, j[1].lower()), jobs))
 
 def create_app():
     app = Flask(__name__)
@@ -23,20 +22,9 @@ def create_app():
         if isinstance(e, HTTPException):
             return e
         print(e)
-        # if app.debug:
-        #     traceback.print_exc()
         if app.debug:
           traceback.print_exc()
         return  ("server error", 500)
-
-
-    @bp.route("/get_all_locations", methods=['GET'])
-    def get_all_locations():
-        query = """SELECT distinct location FROM jobs """
-        with SqliteConnection() as s:
-            res = s.execute(query)
-            locs = res.fetchall()
-        return jsonify([l[0] for l in locs])
 
     def process_re_filter(f):
         keywords = f.split('|')
@@ -44,6 +32,17 @@ def create_app():
         keywords = filter(lambda k: k!='', keywords)
         keywords = '|'.join(keywords)
         return f'.*({keywords}).*'
+
+
+    @bp.route("/job_count", methods=['GET'])
+    def job_count():
+        query = "select count(*) from jobs where stale!= 1"
+        with SqliteConnection() as s:
+            res = s.execute(query)
+            count = res.fetchone()[0]
+        return jsonify(count)
+
+
 
     @bp.route("/get_jobs", methods=['POST'])
     def get_jobs():
@@ -63,26 +62,14 @@ def create_app():
             AND location REGEXP ?
             {'AND remote == 1' if remote else ''}
             {"AND country == 'US'" if us_only else ''}
+            AND stale != 1
+            ORDER BY published DESC
             LIMIT 100
             OFFSET ?"""
         with SqliteConnection() as s:
             res = s.execute(query, (companies, titles, locations, offset))
             jobs = res.fetchall()
         return jsonify(jobs)
-
-
-    @bp.route("/get_swe_jobs", methods=['GET'])
-    def get_pump_jobs():
-        query = """SELECT * FROM jobs
-            WHERE lower(title) REGEXP '.*(software|python|react|frontend|front end|backend|back end|fullstack|full stack|developer|programmer).*'
-            AND location REGEXP '.*(NJ|NY|Remote).*'
-            LIMIT 100"""
-        with SqliteConnection() as s:
-            res = s.execute(query)
-            jobs = res.fetchall()
-        jobs = refine_jobs(jobs)
-        return jsonify(jobs)
-
 
     @bp.route("/",  methods=['GET'])
     def home():
