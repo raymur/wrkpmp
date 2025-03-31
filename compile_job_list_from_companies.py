@@ -77,8 +77,6 @@ def lookup_jobs(company, page=1):
   html = response.text
   if 200 <= response.status_code < 300:
     soup = BeautifulSoup(html, 'html.parser')
-    with open('/tmp/soup', 'w') as f:
-      f.write(str(soup))
     for script in soup.find_all('script'):
       match =  job_json_re.match(script.decode_contents())
       if match and match.group(1):
@@ -117,13 +115,6 @@ def load_companies(offset=0):
   with SqliteConnection() as s:
     res = s.execute("SELECT * FROM companies WHERE ROWID >= ?", (offset,)) 
     company_rows = res.fetchall()
-    
-  with open('data/error_companies.csv', 'r') as f:
-    company_rows = f.read().split('\n')
-    _ = [''] * len(company_rows)
-    company_rows = list(zip(company_rows, _))
-  company_rows = company_rows[:10]  
-  
   for company, name in company_rows:
     company = company.strip()
     current_job_ids = lookup_jobs(company)
