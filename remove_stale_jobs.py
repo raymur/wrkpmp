@@ -1,10 +1,10 @@
 from requests import ConnectTimeout, Timeout, TooManyRedirects, get
-from sql_conn import SqliteConnection
+from sql_conn import SqlConnection
 
 def mark_as_stale(job, company):
   print(f'{company}, {job}: setting stale')
-  with SqliteConnection() as s:
-    q = "UPDATE jobs SET stale = 1 where id == ? AND company_id == ?"
+  with SqlConnection() as s:
+    q = "UPDATE jobs SET stale = 1 where id = %s AND company_id = %s"
     res = s.execute(q, (job,company))
 
 def has_200_response(job, company):
@@ -19,7 +19,7 @@ def has_200_response(job, company):
     return False
   return 200  <= response.status_code < 300
     
-with SqliteConnection() as s:
+with SqlConnection() as s:
   q = "SELECT company_id, id from jobs LIMIT 40000 OFFSET 450"
   res = s.execute(q)
   jobs = res.fetchall()  

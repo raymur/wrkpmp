@@ -1,4 +1,4 @@
-from sql_conn import SqliteConnection
+from sql_conn import SqlConnection
 from flask import Flask, jsonify, request, send_file, render_template, Blueprint
 from flask.json import jsonify
 from werkzeug.exceptions import HTTPException
@@ -31,13 +31,13 @@ def create_app():
         keywords = [k.strip().lower() for k in keywords]
         keywords = filter(lambda k: k!='', keywords)
         keywords = '|'.join(keywords)
-        return f'.*({keywords}).*'
+        return f'%({keywords})%'
 
 
     @bp.route("/job_count", methods=['GET'])
     def job_count():
         query = "select count(*) from jobs where stale!= 1"
-        with SqliteConnection() as s:
+        with SqlConnection() as s:
             res = s.execute(query)
             count = res.fetchone()[0]
         return jsonify(count)
@@ -57,16 +57,17 @@ def create_app():
         us_only = data.get('us', False)
         offset = data.get('page', 0) * 100
         query = f"""SELECT * FROM jobs
-            WHERE company_id REGEXP ? 
-            AND title REGEXP ?
-            AND location REGEXP ?
-            {'AND remote == 1' if remote else ''}
-            {"AND country == 'US'" if us_only else ''}
+            WHERE lower(company_id) SIMILAR TO %s
+            AND lower(title) SIMILAR TO %s
+            AND lower(location) SIMILAR TO %s
+            {'AND remote = 1' if remote else ''}
+            {"AND country = 'US'" if us_only else ''}
             AND stale != 1
             ORDER BY published DESC
+            NULLS LAST
             LIMIT 100
-            OFFSET ?"""
-        with SqliteConnection() as s:
+            OFFSET %s"""
+        with SqlConnection() as s:
             res = s.execute(query, (companies, titles, locations, offset))
             jobs = res.fetchall()
         return jsonify(jobs)

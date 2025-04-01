@@ -5,7 +5,7 @@ from requests.exceptions import ConnectTimeout , Timeout, SSLError
 from bs4 import BeautifulSoup
 import re 
 import sqlite3
-from sql_conn import SqliteConnection
+from sql_conn import SqlConnection
 
 
 job_json_re = re.compile(r"window.__remixContext = (.*);")
@@ -26,7 +26,7 @@ def is_remote(location):
   return 'remote' in location.lower()
 
 def execute_command(command, data=(), res_fn=lambda x: None):
-  with SqliteConnection() as cur: 
+  with SqlConnection() as cur: 
     try:
       res = cur.execute(command, data)
       res_fn(res)
@@ -35,8 +35,8 @@ def execute_command(command, data=(), res_fn=lambda x: None):
 
 
 def update_stale_jobs(current_job_ids, company):
-  with SqliteConnection() as cur:
-    query = " update jobs set stale=1 where company_id==? AND id NOT IN (%s)" % ','.join('?' for _ in current_job_ids)
+  with SqlConnection() as cur:
+    query = " update jobs set stale=1 where company_id=%%s AND id NOT IN (%s)" % ','.join('%s' for _ in current_job_ids)
     parameters = ((company,) + tuple(current_job_ids))
     cur.execute(query, parameters)
   
@@ -45,12 +45,12 @@ def save_job(job_id, company, title, location, published):
   remote = 1 if is_remote(location) else 0
   country = 'US' if is_in_us(location) else ''
   stale = 0
-  with SqliteConnection() as cur:
+  with SqlConnection() as cur:
     try: 
-      cur.execute("INSERT INTO jobs values(?, ?, ?, ?, ?, ?, ?, ?)", (job_id, title, location, company, remote, country, stale, published))
+      cur.execute("INSERT INTO jobs values(%s, %s, %s, %s, %s, %s, %s, %s)", (job_id, title, location, company, remote, country, stale, published))
       return job_id
     except sqlite3.IntegrityError:
-      cur.execute(" update jobs set title=?, location=?, company_id=?, remote=?, country=?, published=? where id==?", (title, location, company, remote, country, published, job_id))
+      cur.execute(" update jobs set title=%s, location=%s, company_id=%s, remote=%s, country=%s, published=%s where id=%s", (title, location, company, remote, country, published, job_id))
       
 
 def print_jobs():
@@ -112,8 +112,8 @@ def lookup_jobs(company, page=1):
 
 def load_companies(offset=0):
   new_job_count = 0
-  with SqliteConnection() as s:
-    res = s.execute("SELECT * FROM companies WHERE ROWID >= ?", (offset,)) 
+  with SqlConnection() as s:
+    res = s.execute("SELECT * FROM companies WHERE ROWID >= %s", (offset,)) 
     company_rows = res.fetchall()
   for company, name in company_rows:
     company = company.strip()

@@ -1,12 +1,12 @@
 import sqlite3
-from sql_conn import SqliteConnection
+from sql_conn import SqlConnection
 
 IMPORT_FILENAME = 'data/companies.csv'
 
 def add_company(company):
-  with SqliteConnection() as s:
+  with SqlConnection() as s:
     try:
-      s.execute("INSERT INTO companies values(?, ?)", (company, ''))
+      s.execute("INSERT INTO companies values(%s, %s)", (company, ''))
     except sqlite3.IntegrityError:
       pass
 

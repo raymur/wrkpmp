@@ -3,7 +3,7 @@ import requests
 from requests import get, Response
 import re
 import time
-from sql_conn import SqliteConnection
+from sql_conn import SqlConnection
 
 
 
@@ -60,10 +60,10 @@ def save_url_list(urls):
 
       
 def save_companies(companies):
-  with SqliteConnection() as cur:
+  with SqlConnection() as cur:
     for comp in companies:
       try:
-        cur.execute("INSERT INTO companies values(?, '')", (comp,))
+        cur.execute("INSERT INTO companies values(%s, '')", (comp,))
       except Exception as e:
         print(e)
     
