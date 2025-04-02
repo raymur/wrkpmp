@@ -1,10 +1,10 @@
 import json
 import sys
+import psycopg
 from requests import  TooManyRedirects, get
 from requests.exceptions import ConnectTimeout , Timeout, SSLError
 from bs4 import BeautifulSoup
 import re 
-import sqlite3
 from sql_conn import SqlConnection
 
 
@@ -30,14 +30,17 @@ def execute_command(command, data=(), res_fn=lambda x: None):
     try:
       res = cur.execute(command, data)
       res_fn(res)
-    except sqlite3.ProgrammingError:
+    except psycopg.ProgrammingError:
       print(command, data,)
 
 
 def update_stale_jobs(current_job_ids, company):
+  query = "update jobs set stale=1 where company_id=%s"
+  if current_job_ids:
+    placeholder_list = ','.join('%s' for _ in current_job_ids)
+    query +=  f" AND id NOT IN ({placeholder_list})"
+  parameters = ((company,) + tuple(current_job_ids))
   with SqlConnection() as cur:
-    query = " update jobs set stale=1 where company_id=%%s AND id NOT IN (%s)" % ','.join('%s' for _ in current_job_ids)
-    parameters = ((company,) + tuple(current_job_ids))
     cur.execute(query, parameters)
   
 
@@ -45,12 +48,13 @@ def save_job(job_id, company, title, location, published):
   remote = 1 if is_remote(location) else 0
   country = 'US' if is_in_us(location) else ''
   stale = 0
-  with SqlConnection() as cur:
-    try: 
+  try: 
+    with SqlConnection() as cur:
       cur.execute("INSERT INTO jobs values(%s, %s, %s, %s, %s, %s, %s, %s)", (job_id, title, location, company, remote, country, stale, published))
-      return job_id
-    except sqlite3.IntegrityError:
-      cur.execute(" update jobs set title=%s, location=%s, company_id=%s, remote=%s, country=%s, published=%s where id=%s", (title, location, company, remote, country, published, job_id))
+    return job_id
+  except (psycopg.IntegrityError, psycopg.errors.UniqueViolation):
+    with SqlConnection() as cur:
+      cur.execute(" update jobs set title=%s, location=%s, company_id=%s, remote=%s, country=%s, published=%s where id=%s", (title, location, company, remote, country, published, str(job_id)))
       
 
 def print_jobs():
@@ -91,7 +95,7 @@ def lookup_jobs(company, page=1):
         total_pages = job_posts.get("total_pages")
         page = job_posts.get("page")
         for job in job_data:
-          job_id = job.get('id')
+          job_id = str(job.get('id'))
           title = job.get('title') or ''
           location = job.get('location') or ''
           published = job.get('published_at') or ''
@@ -110,10 +114,10 @@ def lookup_jobs(company, page=1):
   update_stale_jobs([], company)
   return [] 
 
-def load_companies(offset=0):
+def load_companies():
   new_job_count = 0
   with SqlConnection() as s:
-    res = s.execute("SELECT * FROM companies WHERE ROWID >= %s", (offset,)) 
+    res = s.execute("SELECT * FROM companies") 
     company_rows = res.fetchall()
   for company, name in company_rows:
     company = company.strip()
@@ -122,15 +126,8 @@ def load_companies(offset=0):
     new_job_count += len(current_job_ids)
   return new_job_count
 
-def get_offset():
-  try:
-    return sys.argv[1]
-  except (IndexError, TypeError, ValueError):
-    return 0
     
-
-offset = get_offset()
-new_job_count = load_companies(offset)
+new_job_count = load_companies()
 print(f"added {new_job_count} new jobs")
 total_job_count = print_job_count()
       

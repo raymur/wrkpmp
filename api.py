@@ -2,7 +2,6 @@ from sql_conn import SqlConnection
 from flask import Flask, jsonify, request, send_file, render_template, Blueprint
 from flask.json import jsonify
 from werkzeug.exceptions import HTTPException
-import sqlite3
 import re
 import traceback
 import os

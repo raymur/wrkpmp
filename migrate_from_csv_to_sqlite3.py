@@ -1,4 +1,4 @@
-import sqlite3
+import psycopg
 from sql_conn import SqlConnection
 
 IMPORT_FILENAME = 'data/companies.csv'
@@ -7,7 +7,7 @@ def add_company(company):
   with SqlConnection() as s:
     try:
       s.execute("INSERT INTO companies values(%s, %s)", (company, ''))
-    except sqlite3.IntegrityError:
+    except psycopg.IntegrityError:
       pass
 
 def add_companies_from_csv():
