@@ -1,3 +1,4 @@
+import datetime
 from sql_conn import SqlConnection
 from flask import Flask, jsonify, request, send_file, render_template, Blueprint
 from flask.json import jsonify
@@ -7,6 +8,7 @@ import traceback
 import os
 from flask_cors import CORS
 
+PUBLISHED_ID = 7
 
 def refine_jobs(jobs: list, regex: str):
     return list(filter(lambda j: not re.match(regex, j[1].lower()), jobs))
@@ -31,6 +33,26 @@ def create_app():
         keywords = filter(lambda k: k!='', keywords)
         keywords = '|'.join(keywords)
         return f'%({keywords})%'
+
+    def get_recent_field(published: str):
+        published = datetime.datetime.fromisoformat(published)
+        now = datetime.datetime.now(datetime.timezone.utc)
+        diff = now - published
+        zero_td = datetime.timedelta(0)
+        day_td = datetime.timedelta(days=1)
+        week_td = datetime.timedelta(days=7)
+        month_td = datetime.timedelta(days=30)
+        if diff < zero_td:
+            return ''
+        elif diff < day_td:
+            return 'today'
+        elif diff < week_td:
+            return 'this week'
+        elif diff < month_td:
+            return 'this month'
+        else:
+            return 'older'
+        
 
 
     @bp.route("/job_count", methods=['GET'])
@@ -69,7 +91,7 @@ def create_app():
         with SqlConnection() as s:
             res = s.execute(query, (companies, titles, locations, offset))
             jobs = res.fetchall()
-        return jsonify(jobs)
+        return jsonify([job + (get_recent_field(job[PUBLISHED_ID]),) for job in jobs])
 
     @bp.route("/",  methods=['GET'])
     def home():

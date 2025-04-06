@@ -68,7 +68,7 @@ def lookup_jobs(company, page=1):
   job_ids = []
   gh_url = f"https://job-boards.greenhouse.io/{company}?page={page}"
   try:
-    response = get(gh_url, timeout=15, )
+    response = get(gh_url, timeout=5, )
   except TooManyRedirects:
     print('error, too many redirects')
     return []
@@ -105,8 +105,7 @@ def lookup_jobs(company, page=1):
           return job_ids + lookup_jobs(company, page + 1)
         return job_ids
     else: # end for
-      # print(html)
-      possible_jobs = job_in_html_re.findall((html))
+      possible_jobs = job_in_html_re.findall(html)
       print (possible_jobs)
       # todo: search html for r'href=\".*/jobs/[0-9]+\"'
   # Possibly 
@@ -114,10 +113,10 @@ def lookup_jobs(company, page=1):
   update_stale_jobs([], company)
   return [] 
 
-def load_companies():
+def load_companies(first_company=''):
   new_job_count = 0
   with SqlConnection() as s:
-    res = s.execute("SELECT * FROM companies") 
+    res = s.execute("SELECT * FROM companies where id >= %s", (first_company,)) 
     company_rows = res.fetchall()
   for company, name in company_rows:
     company = company.strip()
@@ -126,9 +125,16 @@ def load_companies():
     new_job_count += len(current_job_ids)
   return new_job_count
 
-    
-new_job_count = load_companies()
-print(f"added {new_job_count} new jobs")
-total_job_count = print_job_count()
+def get_first_company():
+  try:
+    return sys.argv[1]
+  except (IndexError, TypeError, ValueError):
+    return ''
+
+if __name__ == '__main__':
+  first_company_option = get_first_company()
+  new_job_count = load_companies(first_company_option)
+  print(f"added {new_job_count} new jobs")
+  total_job_count = print_job_count()
       
       

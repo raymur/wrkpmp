@@ -1,3 +1,4 @@
 data/all_urls.csv
 data/gh.json
 __pycache__
+.vscode
