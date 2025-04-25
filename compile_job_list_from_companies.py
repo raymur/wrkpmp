@@ -118,7 +118,9 @@ def load_companies(first_company=''):
   with SqlConnection() as s:
     res = s.execute("SELECT * FROM companies where id >= %s", (first_company,)) 
     company_rows = res.fetchall()
-  for company, name in company_rows:
+  for company, name, stale in company_rows:
+    if stale == 1:
+      continue
     company = company.strip()
     current_job_ids = lookup_jobs(company)
     update_stale_jobs(current_job_ids, company)
