@@ -35,6 +35,8 @@ def create_app():
         return f'%({keywords})%'
 
     def get_recent_field(published: str):
+        if not published or type(published) != str:
+            return 'older'
         published = datetime.datetime.fromisoformat(published)
         now = datetime.datetime.now(datetime.timezone.utc)
         diff = now - published
@@ -77,19 +79,22 @@ def create_app():
         remote = data.get('remote', False)
         us_only = data.get('us', False)
         offset = data.get('page', 0) * 100
-        query = f"""SELECT * FROM jobs
-            WHERE lower(company_id) SIMILAR TO %s
+        query = f"""SELECT jobs.*, companies.name 
+            FROM jobs left join companies ON jobs.company_id = companies.name
+            WHERE 
+                (lower(company_id) SIMILAR TO %s
+                OR lower(companies.name) SIMILAR TO %s)
             AND lower(title) SIMILAR TO %s
             AND lower(location) SIMILAR TO %s
             {'AND remote = 1' if remote else ''}
             {"AND country = 'US'" if us_only else ''}
-            AND stale != 1
+            AND jobs.stale != 1
             ORDER BY published DESC
             NULLS LAST
             LIMIT 100
             OFFSET %s"""
         with SqlConnection() as s:
-            res = s.execute(query, (companies, titles, locations, offset))
+            res = s.execute(query, (companies, companies, titles, locations, offset))
             jobs = res.fetchall()
         return jsonify([job + (get_recent_field(job[PUBLISHED_ID]),) for job in jobs])
 

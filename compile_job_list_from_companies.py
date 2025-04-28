@@ -33,6 +33,10 @@ def execute_command(command, data=(), res_fn=lambda x: None):
     except psycopg.ProgrammingError:
       print(command, data,)
 
+def update_company_name(company, company_name):
+  with SqlConnection() as cur:
+    cur.execute(" update companies set name=%s where id=%s", (company_name, company))
+
 
 def update_stale_jobs(current_job_ids, company):
   query = "update jobs set stale=1 where company_id=%s"
@@ -86,11 +90,11 @@ def lookup_jobs(company, page=1):
       if match and match.group(1):
         job_json = match.group(1)
         job_dict = json.loads(job_json)
-        job_posts = job_dict\
+        obj = job_dict\
             .get("state")\
             .get("loaderData")\
-            .get("routes/$url_token")\
-            .get("jobPosts")
+            .get("routes/$url_token") 
+        job_posts = obj.get("jobPosts")
         job_data = job_posts.get("data")
         total_pages = job_posts.get("total_pages")
         page = job_posts.get("page")
@@ -103,6 +107,9 @@ def lookup_jobs(company, page=1):
           job_ids.append(job_id)
         if total_pages > page:
           return job_ids + lookup_jobs(company, page + 1)
+        company_name = obj.get("board", {}).get('name' ,'')
+        if company_name:
+          update_company_name(company, company_name)
         return job_ids
     else: # end for
       possible_jobs = job_in_html_re.findall(html)
