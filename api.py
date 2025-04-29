@@ -1,4 +1,5 @@
 import datetime
+import time
 from sql_conn import SqlConnection
 from flask import Flask, jsonify, request, send_file, render_template, Blueprint
 from flask.json import jsonify
@@ -80,7 +81,7 @@ def create_app():
         us_only = data.get('us', False)
         offset = data.get('page', 0) * 100
         query = f"""SELECT jobs.*, companies.name 
-            FROM jobs left join companies ON jobs.company_id = companies.name
+            FROM jobs left join companies ON jobs.company_id = companies.id
             WHERE 
                 (lower(company_id) SIMILAR TO %s
                 OR lower(companies.name) SIMILAR TO %s)
