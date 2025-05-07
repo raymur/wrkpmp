@@ -8,7 +8,7 @@ import re
 from sql_conn import SqlConnection
 
 
-job_json_re = re.compile(r"window.__remixContext = (.*);")
+job_json_re = re.compile(r"window.__remixContext = (.*);")  #possible bug here
 job_in_html_re = re.compile(r'\bjobs/[0-9]{5,}\b')
 
 us_states = r"Alabama|Alaska|Arizona|Arkansas|California|Colorado|Connecticut|Delaware|Florida|Georgia|Hawaii|Idaho|Illinois|Indiana|Iowa|Kansas|Kentucky|Louisiana|Maine|Maryland|Massachusetts|Michigan|Minnesota|Mississippi|Missouri|Montana|Nebraska|Nevada|New Hampshire|New Jersey|New Mexico|New York|North Carolina|North Dakota|Ohio|Oklahoma|Oregon|Pennsylvania|Rhode Island|South Carolina|South Dakota|Tennessee|Texas|Utah|Vermont|Virginia|Washington|West Virginia|Wisconsin|Wyoming|AL|AK|AZ|AR|CA|CO|CT|DE|FL|GA|HI|ID|IL|IN|IA|KS|KY|LA|ME|MD|MA|MI|MN|MS|MO|MT|NE|NV|NH|NJ|NM|NY|NC|ND|OH|OK|OR|PA|RI|SC|SD|TN|TX|UT|VT|VA|WA|WV|WI|WY"
@@ -67,72 +67,76 @@ def print_jobs():
 def print_job_count():
   execute_command('SELECT count(*) from jobs', res_fn=lambda res: print(f"total jobs: {res.fetchall()[0][0]}"))
 
+def do_ugly_parsing(script):
+  decoded_script = script.decode_contents() 
+  match =  job_json_re.match(decoded_script)
+  if match and match.group(1):
+    job_json = match.group(1)
+    job_dict = json.loads(job_json)
+    obj = job_dict\
+        .get("state")\
+        .get("loaderData")\
+        .get("routes/$url_token")    ##possible bug here, key not always right
+    company_name = obj.get("board", {}).get('name' ,'')
+    job_posts = obj.get("jobPosts")
+    # job_post dict_keys(['post_type', 'language', 'title', 'hiring_plan_id', 'content', 'introduction', 'conclusion', 'enable_eeoc', 'job_post_location', 'public_url', 'company_name', 'confirmation_message', 'pay_ranges', 'published_at', 'employment', 'fingerprint', 'redirect_to', 'is_featured', 'education_config', 'questions', 'demographic_questions'])
+    job_data = job_posts.get("data")
+    total_pages = job_posts.get("total_pages")
+    page = job_posts.get("page")
+    return job_data, company_name, total_pages, page
+
+def get_job_attributes(job):
+  job_id = str(job.get('id'))
+  title = job.get('title') or ''
+  location = job.get('location') or ''
+  published = job.get('published_at') or ''
+  return job_id, title, location, published
+
+def get_company_response(company, page):
+  gh_url = f"https://job-boards.greenhouse.io/{company}?page={page}"
+  try:
+    return get(gh_url, timeout=5, ).text
+  except TooManyRedirects:
+    print('error, too many redirects')
+  except (ConnectTimeout, Timeout):
+    print('connection timeout')
+  except SSLError:
+    print('ssl error')
+  finally:
+    return None, None
+
 # returns list of new jobs saved
 def lookup_jobs(company, page=1):
   job_ids = []
-  gh_url = f"https://job-boards.greenhouse.io/{company}?page={page}"
-  try:
-    response = get(gh_url, timeout=5, )
-  except TooManyRedirects:
-    print('error, too many redirects')
+  html, status_code = get_company_response(company, page)
+  if not html:
     return []
-  except (ConnectTimeout, Timeout):
-    print('connection timeout')
+  if status_code < 200 or status_code > 300:
+    print (f'{company}: {status_code}')
+    update_stale_jobs([], company)
     return []
-  except SSLError:
-    print('ssl error')
-    return []
-  html = response.text
-  if 200 <= response.status_code < 300:
-    soup = BeautifulSoup(html, 'html.parser')
-    for script in soup.find_all('script'):
-      match =  job_json_re.match(script.decode_contents())
-      if match and match.group(1):
-        job_json = match.group(1)
-        job_dict = json.loads(job_json)
-        obj = job_dict\
-            .get("state")\
-            .get("loaderData")\
-            .get("routes/$url_token") 
-        job_posts = obj.get("jobPosts")
-        job_data = job_posts.get("data")
-        total_pages = job_posts.get("total_pages")
-        page = job_posts.get("page")
-        for job in job_data:
-          job_id = str(job.get('id'))
-          title = job.get('title') or ''
-          location = job.get('location') or ''
-          published = job.get('published_at') or ''
-          save_job(job_id, company, title, location, published)
-          job_ids.append(job_id)
-        if total_pages > page:
-          return job_ids + lookup_jobs(company, page + 1)
-        company_name = obj.get("board", {}).get('name' ,'')
-        if company_name:
-          update_company_name(company, company_name)
-        return job_ids
-    else: # end for
-      possible_jobs = job_in_html_re.findall(html)
-      print (possible_jobs)
-      # todo: search html for r'href=\".*/jobs/[0-9]+\"'
-  # Possibly 
-  print (f'{company}: {response.status_code}')
-  update_stale_jobs([], company)
-  return [] 
+  soup = BeautifulSoup(html, 'html.parser')
+  scripts = soup.find_all('script')
+  for script in scripts:
+    job_data, company_name, total_pages, page = do_ugly_parsing(script)
+    for job in job_data:
+      job_id, title, location, published = get_job_attributes(job)
+      save_job(job_id, title, location, published)
+      job_ids.append(job_id)
+    if total_pages > page:
+      return job_ids + lookup_jobs(company, page + 1) #recurse
+    if company_name:
+      update_company_name(company, company_name)
+    return job_ids
+  # possible_jobs = job_in_html_re.findall(html) # this can be used to get jobs another way if not found in the script
+  return []
+
 
 def load_companies(first_company=''):
-  new_job_count = 0
   with SqlConnection() as s:
     res = s.execute("SELECT * FROM companies where id >= %s", (first_company,)) 
     company_rows = res.fetchall()
-  for company, name, stale in company_rows:
-    if stale == 1:
-      continue
-    company = company.strip()
-    current_job_ids = lookup_jobs(company)
-    update_stale_jobs(current_job_ids, company)
-    new_job_count += len(current_job_ids)
-  return new_job_count
+  return [company.strip() for company, name, stale in company_rows if stale == 0]
 
 def get_first_company():
   try:
@@ -141,9 +145,12 @@ def get_first_company():
     return ''
 
 if __name__ == '__main__':
+  new_job_count = 0
   first_company_option = get_first_company()
-  new_job_count = load_companies(first_company_option)
+  companies = load_companies(first_company_option)
+  for company in companies:
+    current_job_ids = lookup_jobs(company)
+    update_stale_jobs(current_job_ids, company)
+    new_job_count += len(current_job_ids)
   print(f"added {new_job_count} new jobs")
   total_job_count = print_job_count()
-      
-      

@@ -1,0 +1,100 @@
+2025-05-03T12:44:06.045293+00:00 app[scheduler.8363]: meaningfulgigs: 404
+2025-05-03T12:44:06.171614+00:00 app[scheduler.8363]: meaningfulgigscreativecommunitydesigndisciplines: 404
+2025-05-03T12:44:06.558153+00:00 app[scheduler.8363]: mediatonic: 403
+2025-05-03T12:44:09.005682+00:00 app[scheduler.8363]: memo: 404
+2025-05-03T12:44:29.854652+00:00 app[scheduler.8363]: []
+2025-05-03T12:44:29.854662+00:00 app[scheduler.8363]: meruhealth: 200
+2025-05-03T12:44:40.534077+00:00 app[scheduler.8363]: midtowne: 404
+2025-05-03T12:44:40.939092+00:00 app[scheduler.8363]: mindcaresolutions: 404
+2025-05-03T12:46:23.291855+00:00 app[scheduler.8363]: []
+2025-05-03T12:46:23.291867+00:00 app[scheduler.8363]: modulrfinance: 200
+2025-05-03T12:46:24.958389+00:00 app[scheduler.8363]: ['jobs/4563807006', 'jobs/4563531006', 'jobs/4563528006', 'jobs/4563452006', 'jobs/4563104006', 'jobs/4556658006', 'jobs/4555227006', 'jobs/4553231006', 'jobs/4453087006', 'jobs/4453014006', 'jobs/4563807006', 'jobs/4563807006', 'jobs/4563531006', 'jobs/4563531006', 'jobs/4563528006', 'jobs/4563528006', 'jobs/4563452006', 'jobs/4563452006', 'jobs/4563104006', 'jobs/4563104006', 'jobs/4556658006', 'jobs/4556658006', 'jobs/4555227006', 'jobs/4555227006', 'jobs/4553231006', 'jobs/4553231006', 'jobs/4453087006', 'jobs/4453087006', 'jobs/4453014006', 'jobs/4453014006']
+2025-05-03T12:46:24.958410+00:00 app[scheduler.8363]: moltonbrown: 200
+2025-05-03T12:46:25.280392+00:00 app[scheduler.8363]: []
+2025-05-03T12:46:25.280424+00:00 app[scheduler.8363]: monomipark: 200
+2025-05-03T12:46:25.385919+00:00 app[scheduler.8363]: motimatic: 404
+2025-05-03T12:46:30.861710+00:00 app[scheduler.8363]: Traceback (most recent call last):
+2025-05-03T12:46:30.862448+00:00 app[scheduler.8363]: File "/app/.heroku/python/lib/python3.13/site-packages/urllib3/response.py", line 754, in _error_catcher
+2025-05-03T12:46:30.862448+00:00 app[scheduler.8363]: yield
+2025-05-03T12:46:30.862449+00:00 app[scheduler.8363]: File "/app/.heroku/python/lib/python3.13/site-packages/urllib3/response.py", line 879, in _raw_read
+2025-05-03T12:46:30.862450+00:00 app[scheduler.8363]: data = self._fp_read(amt, read1=read1) if not fp_closed else b""
+2025-05-03T12:46:30.862450+00:00 app[scheduler.8363]: ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+2025-05-03T12:46:30.862461+00:00 app[scheduler.8363]: File "/app/.heroku/python/lib/python3.13/site-packages/urllib3/response.py", line 862, in _fp_read
+2025-05-03T12:46:30.862462+00:00 app[scheduler.8363]: return self._fp.read(amt) if amt is not None else self._fp.read()
+2025-05-03T12:46:30.862462+00:00 app[scheduler.8363]: ~~~~~~~~~~~~~^^^^^
+2025-05-03T12:46:30.862462+00:00 app[scheduler.8363]: File "/app/.heroku/python/lib/python3.13/http/client.py", line 479, in read
+2025-05-03T12:46:30.862462+00:00 app[scheduler.8363]: s = self.fp.read(amt)
+2025-05-03T12:46:30.862463+00:00 app[scheduler.8363]: File "/app/.heroku/python/lib/python3.13/socket.py", line 719, in readinto
+2025-05-03T12:46:30.862463+00:00 app[scheduler.8363]: return self._sock.recv_into(b)
+2025-05-03T12:46:30.862463+00:00 app[scheduler.8363]: ~~~~~~~~~~~~~~~~~~~~^^^
+2025-05-03T12:46:30.862464+00:00 app[scheduler.8363]: File "/app/.heroku/python/lib/python3.13/ssl.py", line 1304, in recv_into
+2025-05-03T12:46:30.862465+00:00 app[scheduler.8363]: return self.read(nbytes, buffer)
+2025-05-03T12:46:30.862465+00:00 app[scheduler.8363]: ~~~~~~~~~^^^^^^^^^^^^^^^^
+2025-05-03T12:46:30.862472+00:00 app[scheduler.8363]: File "/app/.heroku/python/lib/python3.13/ssl.py", line 1138, in read
+2025-05-03T12:46:30.862473+00:00 app[scheduler.8363]: return self._sslobj.read(len, buffer)
+2025-05-03T12:46:30.862473+00:00 app[scheduler.8363]: ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+2025-05-03T12:46:30.862488+00:00 app[scheduler.8363]: TimeoutError: The read operation timed out
+2025-05-03T12:46:30.862546+00:00 app[scheduler.8363]: 
+2025-05-03T12:46:30.862547+00:00 app[scheduler.8363]: The above exception was the direct cause of the following exception:
+2025-05-03T12:46:30.862547+00:00 app[scheduler.8363]: 
+2025-05-03T12:46:30.862547+00:00 app[scheduler.8363]: Traceback (most recent call last):
+2025-05-03T12:46:30.863047+00:00 app[scheduler.8363]: File "/app/.heroku/python/lib/python3.13/site-packages/requests/models.py", line 820, in generate
+2025-05-03T12:46:30.863047+00:00 app[scheduler.8363]: yield from self.raw.stream(chunk_size, decode_content=True)
+2025-05-03T12:46:30.863047+00:00 app[scheduler.8363]: File "/app/.heroku/python/lib/python3.13/site-packages/urllib3/response.py", line 1066, in stream
+2025-05-03T12:46:30.863047+00:00 app[scheduler.8363]: data = self.read(amt=amt, decode_content=decode_content)
+2025-05-03T12:46:30.863048+00:00 app[scheduler.8363]: File "/app/.heroku/python/lib/python3.13/site-packages/urllib3/response.py", line 955, in read
+2025-05-03T12:46:30.863049+00:00 app[scheduler.8363]: data = self._raw_read(amt)
+2025-05-03T12:46:30.863056+00:00 app[scheduler.8363]: File "/app/.heroku/python/lib/python3.13/site-packages/urllib3/response.py", line 878, in _raw_read
+2025-05-03T12:46:30.863056+00:00 app[scheduler.8363]: with self._error_catcher():
+2025-05-03T12:46:30.863056+00:00 app[scheduler.8363]: ~~~~~~~~~~~~~~~~~~~^^
+2025-05-03T12:46:30.863057+00:00 app[scheduler.8363]: File "/app/.heroku/python/lib/python3.13/contextlib.py", line 162, in __exit__
+2025-05-03T12:46:30.863057+00:00 app[scheduler.8363]: self.gen.throw(value)
+2025-05-03T12:46:30.863057+00:00 app[scheduler.8363]: ~~~~~~~~~~~~~~^^^^^^^
+2025-05-03T12:46:30.863064+00:00 app[scheduler.8363]: File "/app/.heroku/python/lib/python3.13/site-packages/urllib3/response.py", line 759, in _error_catcher
+2025-05-03T12:46:30.863065+00:00 app[scheduler.8363]: raise ReadTimeoutError(self._pool, None, "Read timed out.") from e  # type: ignore[arg-type]
+2025-05-03T12:46:30.863065+00:00 app[scheduler.8363]: ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025-05-03T12:46:30.863078+00:00 app[scheduler.8363]: urllib3.exceptions.ReadTimeoutError: HTTPSConnectionPool(host='www.multiquip.com', port=443): Read timed out.
+2025-05-03T12:46:30.863085+00:00 app[scheduler.8363]: 
+2025-05-03T12:46:30.863085+00:00 app[scheduler.8363]: During handling of the above exception, another exception occurred:
+2025-05-03T12:46:30.863085+00:00 app[scheduler.8363]: 
+2025-05-03T12:46:30.863085+00:00 app[scheduler.8363]: Traceback (most recent call last):
+2025-05-03T12:46:30.864063+00:00 app[scheduler.8363]: File "/app/compile_job_list_from_companies.py", line 145, in <module>
+2025-05-03T12:46:30.864064+00:00 app[scheduler.8363]: new_job_count = load_companies(first_company_option)
+2025-05-03T12:46:30.864064+00:00 app[scheduler.8363]: File "/app/compile_job_list_from_companies.py", line 132, in load_companies
+2025-05-03T12:46:30.864064+00:00 app[scheduler.8363]: current_job_ids = lookup_jobs(company)
+2025-05-03T12:46:30.864065+00:00 app[scheduler.8363]: File "/app/compile_job_list_from_companies.py", line 75, in lookup_jobs
+2025-05-03T12:46:30.864065+00:00 app[scheduler.8363]: response = get(gh_url, timeout=5, )
+2025-05-03T12:46:30.864072+00:00 app[scheduler.8363]: File "/app/.heroku/python/lib/python3.13/site-packages/requests/api.py", line 73, in get
+2025-05-03T12:46:30.864072+00:00 app[scheduler.8363]: return request("get", url, params=params, **kwargs)
+2025-05-03T12:46:30.864073+00:00 app[scheduler.8363]: File "/app/.heroku/python/lib/python3.13/site-packages/requests/api.py", line 59, in request
+2025-05-03T12:46:30.864073+00:00 app[scheduler.8363]: return session.request(method=method, url=url, **kwargs)
+2025-05-03T12:46:30.864073+00:00 app[scheduler.8363]: ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025-05-03T12:46:30.864084+00:00 app[scheduler.8363]: File "/app/.heroku/python/lib/python3.13/site-packages/requests/sessions.py", line 589, in request
+2025-05-03T12:46:30.864084+00:00 app[scheduler.8363]: resp = self.send(prep, **send_kwargs)
+2025-05-03T12:46:30.864084+00:00 app[scheduler.8363]: File "/app/.heroku/python/lib/python3.13/site-packages/requests/sessions.py", line 724, in send
+2025-05-03T12:46:30.864084+00:00 app[scheduler.8363]: history = [resp for resp in gen]
+2025-05-03T12:46:30.864085+00:00 app[scheduler.8363]: ^^^
+2025-05-03T12:46:30.864085+00:00 app[scheduler.8363]: File "/app/.heroku/python/lib/python3.13/site-packages/requests/sessions.py", line 265, in resolve_redirects
+2025-05-03T12:46:30.864086+00:00 app[scheduler.8363]: resp = self.send(
+2025-05-03T12:46:30.864086+00:00 app[scheduler.8363]: req,
+2025-05-03T12:46:30.864086+00:00 app[scheduler.8363]: ...<6 lines>...
+2025-05-03T12:46:30.864087+00:00 app[scheduler.8363]: **adapter_kwargs,
+2025-05-03T12:46:30.864087+00:00 app[scheduler.8363]: )
+2025-05-03T12:46:30.864094+00:00 app[scheduler.8363]: File "/app/.heroku/python/lib/python3.13/site-packages/requests/sessions.py", line 739, in send
+2025-05-03T12:46:30.864094+00:00 app[scheduler.8363]: r._next = next(
+2025-05-03T12:46:30.864094+00:00 app[scheduler.8363]: ~~~~^
+2025-05-03T12:46:30.864095+00:00 app[scheduler.8363]: self.resolve_redirects(r, request, yield_requests=True, **kwargs)
+2025-05-03T12:46:30.864095+00:00 app[scheduler.8363]: ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025-05-03T12:46:30.864095+00:00 app[scheduler.8363]: )
+2025-05-03T12:46:30.864095+00:00 app[scheduler.8363]: ^
+2025-05-03T12:46:30.864095+00:00 app[scheduler.8363]: File "/app/.heroku/python/lib/python3.13/site-packages/requests/sessions.py", line 186, in resolve_redirects
+2025-05-03T12:46:30.864095+00:00 app[scheduler.8363]: resp.content  # Consume socket so it can be released
+2025-05-03T12:46:30.864095+00:00 app[scheduler.8363]: ^^^^^^^^^^^^
+2025-05-03T12:46:30.864103+00:00 app[scheduler.8363]: File "/app/.heroku/python/lib/python3.13/site-packages/requests/models.py", line 902, in content
+2025-05-03T12:46:30.864103+00:00 app[scheduler.8363]: self._content = b"".join(self.iter_content(CONTENT_CHUNK_SIZE)) or b""
+2025-05-03T12:46:30.864103+00:00 app[scheduler.8363]: ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025-05-03T12:46:30.864103+00:00 app[scheduler.8363]: File "/app/.heroku/python/lib/python3.13/site-packages/requests/models.py", line 826, in generate
+2025-05-03T12:46:30.864103+00:00 app[scheduler.8363]: raise ConnectionError(e)
+2025-05-03T12:46:30.864117+00:00 app[scheduler.8363]: requests.exceptions.ConnectionError: HTTPSConnectionPool(host='www.multiquip.com', port=443): Read timed out.
+2025-05-03T12:46:30.959307+00:00 heroku[scheduler.8363]: Process exited with status 1
+2025-05-03T12:46:30.978928+00:00 heroku[scheduler.8363]: State changed from up to complete
