@@ -9,7 +9,7 @@ import traceback
 import os
 from flask_cors import CORS
 
-PUBLISHED_ID = 7
+PUBLISHED_ID = 6
 
 def refine_jobs(jobs: list, regex: str):
     return list(filter(lambda j: not re.match(regex, j[1].lower()), jobs))
@@ -80,7 +80,7 @@ def create_app():
         remote = data.get('remote', False)
         us_only = data.get('us', False)
         offset = data.get('page', 0) * 100
-        query = f"""SELECT jobs.*, companies.name 
+        query = f"""SELECT jobs.id, jobs.title, jobs.location, jobs.company_id, jobs.salary, companies.name, jobs.published
             FROM jobs left join companies ON jobs.company_id = companies.id
             WHERE 
                 (lower(company_id) SIMILAR TO %s
@@ -97,7 +97,9 @@ def create_app():
         with SqlConnection() as s:
             res = s.execute(query, (companies, companies, titles, locations, offset))
             jobs = res.fetchall()
-        return jsonify([job + (get_recent_field(job[PUBLISHED_ID]),) for job in jobs])
+        sub_published_tag = lambda job :  job[:PUBLISHED_ID] + (get_recent_field(job[PUBLISHED_ID]),)
+        jobs = [sub_published_tag(job) for job in jobs]
+        return jsonify(jobs)
 
     @bp.route("/",  methods=['GET'])
     def home():

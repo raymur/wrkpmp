@@ -5,7 +5,7 @@ import logging
 def test_single_company():
   logger.setLevel(level=logging.DEBUG)
   new_job_count = 0
-  companies = ['memo']
+  companies = ['appviewxrebound']
   for company in companies:
     current_job_ids = lookup_jobs(company)
     logger.debug(current_job_ids)

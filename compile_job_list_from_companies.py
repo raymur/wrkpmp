@@ -60,13 +60,11 @@ def save_job(job_id, company, title, location, published, salary):
   stale = 0
   try: 
     with SqlConnection() as cur:
-      #TODO: update salary here
-      cur.execute("INSERT INTO jobs values(%s, %s, %s, %s, %s, %s, %s, %s)", (job_id, title, location, company, remote, country, stale, published))
+      cur.execute("INSERT INTO jobs values(%s, %s, %s, %s, %s, %s, %s, %s, %s)", (job_id, title, location, company, remote, country, stale, published, salary))
     return job_id
   except (psycopg.IntegrityError, psycopg.errors.UniqueViolation):
     with SqlConnection() as cur:
-      # TODO: update salary here
-      cur.execute(" update jobs set title=%s, location=%s, company_id=%s, remote=%s, country=%s, published=%s where id=%s", (title, location, company, remote, country, published, str(job_id)))
+      cur.execute(" update jobs set title=%s, location=%s, company_id=%s, remote=%s, country=%s, published=%s, salary=%s where id=%s", (title, location, company, remote, country, published, salary, str(job_id)))
 
 def log_job_count():
   execute_command('SELECT count(*) from jobs', res_fn=lambda res: logger.info(f"total jobs: {res.fetchall()[0][0]}"))
