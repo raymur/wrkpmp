@@ -40,7 +40,6 @@ class SalaryFinder:
     for money_phrase in money_phrases:
       tokens = tokenizer.tokenize(money_phrase)
       final_words = [word.lower() for word in tokens]
-      print(final_words)
       final_words = set(final_words)
       is_likely_salary = len(salary_words.intersection(final_words)) >= 1
       if is_likely_salary:
