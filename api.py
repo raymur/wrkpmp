@@ -80,7 +80,16 @@ def create_app():
         remote = data.get('remote', False)
         us_only = data.get('us', False)
         offset = data.get('page', 0) * 100
-        query = f"""SELECT jobs.id, jobs.title, jobs.location, jobs.company_id, jobs.salary, companies.name, jobs.published
+        group_by_company = data.get('groupByCompany', False)        
+        query = f"""SELECT 
+                    jobs.id, 
+                    jobs.title, 
+                    jobs.location, 
+                    jobs.company_id, 
+                    jobs.salary, 
+                    companies.name, 
+                    jobs.published
+                    {', MAX(published) OVER (PARTITION BY company_id)' if group_by_company else ''}
             FROM jobs left join companies ON jobs.company_id = companies.id
             WHERE 
                 (lower(company_id) SIMILAR TO %s
@@ -90,8 +99,9 @@ def create_app():
             {'AND remote = 1' if remote else ''}
             {"AND country = 'US'" if us_only else ''}
             AND jobs.stale != 1
-            ORDER BY published DESC
-            NULLS LAST
+            ORDER BY 
+                {'max DESC NULLS LAST,  company_id, ' if group_by_company else ''}
+                published DESC NULLS LAST
             LIMIT 100
             OFFSET %s"""
         with SqlConnection() as s:
