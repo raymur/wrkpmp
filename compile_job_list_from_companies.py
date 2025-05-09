@@ -126,6 +126,7 @@ def lookup_jobs(company, page=1):
     logger.warning (f'{company}: {status_code}')
     update_stale_jobs([], company)
     return []
+  logger.info(f'{company}: {status_code}')
   soup = BeautifulSoup(html, 'html.parser')
   scripts = soup.find_all('script')
   for script in scripts:
@@ -146,9 +147,9 @@ def lookup_jobs(company, page=1):
 
 def load_companies(first_company=''):
   with SqlConnection() as s:
-    res = s.execute("SELECT * FROM companies where id >= %s", (first_company,)) 
-    company_rows = res.fetchall()
-  return [company.strip() for company, name, stale in company_rows if stale == 0]
+    query =  "SELECT id FROM companies where id >= %s AND stale = 0 order by id"
+    res = s.execute(query, (first_company,)) 
+    return [company for (company,) in res.fetchall()]
 
 def get_first_company():
   try:
@@ -157,13 +158,17 @@ def get_first_company():
     return ''
 
 if __name__ == '__main__':
-  logger.setLevel(logging.INFO)
+  logging.basicConfig(format='%(levelname)s: %(message)s', level=logging.INFO)
   new_job_count = 0
   first_company_option = get_first_company()
   companies = load_companies(first_company_option)
-  for company in companies:
+  interval = len(companies)//10 if len(companies) >= 10 else 1
+  for i, company in enumerate(companies, 1):
     current_job_ids = lookup_jobs(company)
     update_stale_jobs(current_job_ids, company)
     new_job_count += len(current_job_ids)
+    if i % interval == 0:
+      progress_percent = i*100/len(companies)
+      logger.info(f'{progress_percent}% complete')      
   logger.info(f"added {new_job_count} new jobs")
   total_job_count = log_job_count()
