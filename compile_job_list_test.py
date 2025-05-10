@@ -3,9 +3,9 @@ import logging
 
 
 def test_single_company():
-  logger.setLevel(level=logging.DEBUG)
+  logging.basicConfig(format='%(levelname)s: %(message)s', level=logging.DEBUG)
   new_job_count = 0
-  companies = ['appviewxrebound']
+  companies = ['honehealth']
   for company in companies:
     current_job_ids = lookup_jobs(company)
     logger.debug(current_job_ids)

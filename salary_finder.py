@@ -3,38 +3,53 @@ from bs4 import BeautifulSoup
 from nltk.tokenize import RegexpTokenizer
 import html
 
-salary_snippit_re = re.compile(
-    r'.{0,150}'
-    r'\W*[$₩€¥£]?\W*[0-9]{2,3},?[0-9]{3}'                    
-    r'(?:\W*(?:-|–|—|to)\W*[$₩€¥£][0-9]{2,3},?[0-9]{3})?'
-    r'.{0,150}'
+salary_re = (
+    r'(?:[A-Z]{3}\W*|)'
+    r'[$₩€¥£]?\W*'
+    r'[0-9]{2,3},?[0-9]{3}'
+    r'(?:\.[0-9]{2}|)'
+     r'(?:\W*[A-Z]{3}|)'
+     
+r'(?:\W*(?:-|–|—|to|and)\W*'
+r'(?:[A-Z]{3}|)'
+r'\W*[$₩€¥£]?'
+r'[0-9]{2,3},?[0-9]{3}'
+r'(?:\.[0-9]{2}|)'  
+r'(?:\W*[A-Z]{3}|)'
+r')?'
 )
 
-salary_only_re = re.compile(
-    r'[$₩€¥£]?\W*[0-9]{2,3},?[0-9]{3}'                    
-    r'(?:\W*(?:-|–|—|to)\W*[$₩€¥£][0-9]{2,3},?[0-9]{3})?'
+salary_snippit_re = re.compile(
+    r'.{0,100}'
+    + salary_re +
+    r'.{0,100}'
 )
+
+salary_only_re = re.compile(salary_re)
 
 salary_words = set([
-  'base',
   'comp',
   'compensation',
-  'eur'
-  'gbp'
+  'eur',
+  'gbp',
   'pay',
   'salary',
   'tc',
-  'usd'
-  'wage'
+  'usd',
+  'wage',
 ])
 
 class SalaryFinder:
   @staticmethod
   def find_salary(content):
-    salary_items = []
     content = html.unescape(content)
     soup = BeautifulSoup(content, 'html.parser')
     text = soup.get_text()
+    return SalaryFinder.find_salary_from_text(text)
+  
+  @staticmethod
+  def find_salary_from_text(text):
+    salary_items = []
     money_phrases = salary_snippit_re.findall(text)
     tokenizer = RegexpTokenizer(r'\w+')
     for money_phrase in money_phrases:
@@ -46,4 +61,6 @@ class SalaryFinder:
         salary_item = salary_only_re.search(money_phrase)
         if salary_item:
           salary_items.append(salary_item.group().strip())
+    salary_item = list(set(salary_items))
     return '; '.join(salary_items)
+
