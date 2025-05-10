@@ -1,8 +1,9 @@
 import json
 import sys
 import psycopg
-from requests import  TooManyRedirects, get
-from requests.exceptions import ConnectTimeout , Timeout, SSLError, ConnectionError
+from requests.adapters import HTTPAdapter
+from requests import  Session, TooManyRedirects, get
+from requests.exceptions import ConnectTimeout , Timeout, SSLError, ConnectionError, TooManyRedirects
 from bs4 import BeautifulSoup
 import re 
 from salary_finder import SalaryFinder
@@ -99,9 +100,13 @@ def get_job_attributes(job):
   return job_id, title, location, published, salary
 
 def get_company_response(company, page):
+  adapter = HTTPAdapter()
+  session = Session()
+  session.max_redirects=3
+  session.mount("https://", adapter)
   gh_url = f"https://job-boards.greenhouse.io/{company}?page={page}"
   try:
-    response = get(gh_url, timeout=10, )
+    response = session.get(gh_url, timeout=(3.05, 9 ), allow_redirects=True)
     return response.text, response.status_code
   except TooManyRedirects:
     logger.error(company + ': error, too many redirects')
