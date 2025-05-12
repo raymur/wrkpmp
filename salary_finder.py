@@ -4,18 +4,18 @@ from nltk.tokenize import RegexpTokenizer
 import html
 
 salary_re = (
-    r'(?:[A-Z]{3}\W*|)'
-    r'[$₩€¥£]?\W*'
+    r'(?:\b[A-Z]{3}\W*|)'
+    r'[\$₩€¥£]?[^\w\$₩€¥£]*'
     r'[0-9]{2,3},?[0-9]{3}'
     r'(?:\.[0-9]{2}|)'
-     r'(?:\W*[A-Z]{3}|)'
+     r'(?:\W*[A-Z]{3}\b|)'
      
 r'(?:\W*(?:-|–|—|to|and)\W*'
 r'(?:[A-Z]{3}|)'
-r'\W*[$₩€¥£]?'
+r'\W*[\$₩€¥£]?[^\w\$₩€¥£]*'
 r'[0-9]{2,3},?[0-9]{3}'
 r'(?:\.[0-9]{2}|)'  
-r'(?:\W*[A-Z]{3}|)'
+r'(?:\W*[A-Z]{3}\b|)'
 r')?'
 )
 
@@ -23,6 +23,7 @@ salary_snippit_re = re.compile(
     r'.{0,100}'
     + salary_re +
     r'.{0,100}'
+  , re.DOTALL
 )
 
 salary_only_re = re.compile(salary_re)
@@ -30,12 +31,9 @@ salary_only_re = re.compile(salary_re)
 salary_words = set([
   'comp',
   'compensation',
-  'eur',
-  'gbp',
   'pay',
   'salary',
   'tc',
-  'usd',
   'wage',
 ])
 

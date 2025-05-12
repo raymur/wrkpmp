@@ -361,6 +361,48 @@ Apply for this job
 
 '''
  )
+,
+('' , 
+ """t bien plus encore, on vous dit tout lorsque nous nous rencontrerons !
+
+ 
+
+Ouihelp prend soin de ceux qui prennent soin et peut-être bientôt de vous ?
+Chez Ouihelp, nous avons à cœur de donner sa chance à tout le monde, c’est pourquoi nos postes sont handi-accueillants et ne nécessitent pas forcément le permis B.
+
+ 
+
+ADRESSE AGENCE MONTIGNY - B'Coworker 6 rue Blaise Pascal - 78990 ELANCOURT
+
+Salaire horaire pour les AVS / ADV
+
+Echelle salariale
+
+€12,89 - €13 EUR"""
+ ),
+("£390,000 - £390,000 GBP",'''
+     Possess deep knowledge of the enterprise tech industry, particularly in areas like cloud services, data management, or AI
+    Excel at building internal champions within client organizations
+    Have a track record of success in companies that had to "hustle" and "come from behind" to win deals
+    Demonstrate strong diplomatic skills and the ability to navigate complex partner ecosystems
+    Are driven by a desire to win and have experience overcoming significant market challenges
+    International sales experience is a plus
+
+The expected salary range for this position is:
+
+Annual Salary:
+
+£390,000 - £390,000 GBP
+Logistics
+
+Education requirements: We require at least a Bachelor's degree in a related field or equivalent experience.
+
+Location-based hybrid policy: Currently, we expect all staff to be in one of our offices at least 25% of the time. However, some roles may require more time in our offices.
+
+Visa sponsorship: We do sponsor visas! However, we aren't able to successfully sponsor visas for every role and every candidate. But if we make you an offer, we will make every reasonable effort to get you a visa, and we retain an immigration lawyer to help with this.
+
+We encourage you to apply even if you do not believe you meet every single qualification. Not all strong candidates will meet every single qualification as listed.  Research shows that people who identify as being from underrepresented groups are more prone to experiencing impost''')
+
 ]
 
  
